@@ -1,0 +1,51 @@
+/* Add custom styles for your UI */
+body {
+  font-family: "Montserrat", sans-serif; /* Apply Montserrat font */
+}
+
+.quiz-container {
+  padding: 20px;
+}
+
+.timer,
+.scores {
+  font-size: 15px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.pagination button {
+  margin: 0 2px;
+}
+
+.pagination .btn-outline-secondary.correct {
+    background-color: green !important;
+    color: white !important;
+    border-color: green !important;
+}
+
+.pagination .btn-outline-secondary.incorrect {
+    background-color: red !important;
+    color: white !important;
+    border-color: red !important;
+}
+
+.pagination .btn-outline-secondary.unanswered {
+    background-color: grey !important;
+    color: white !important;
+    border-color: grey !important;
+}
+
+
+/* Active Button */
+.pagination .btn-outline-secondary.active {
+  border: 2px solid black !important; /* Highlight the active button */
+}
+
+
+

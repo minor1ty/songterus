@@ -1,0 +1,8 @@
+.final-score-container {
+    margin-top: 100px;
+}
+
+#final-score {
+    font-size: 80px;
+    color: #28a745;
+}

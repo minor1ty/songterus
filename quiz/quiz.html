@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container quiz-container">
+        <!-- Back button to homepage -->
+        <a href="../index.html" class="btn btn-outline-secondary mb-3">Back to Home</a>
+
+        <!-- Timer -->
+        <div class="d-flex justify-content-between">
+            <div class="timer" id="timer">Time: 30</div>
+            <div class="scores">
+                <span id="correct-score">Correct: 0</span> | 
+                <span id="incorrect-score">Incorrect: 0</span>
+            </div>
+        </div>
+
+        <!-- Question Progress -->
+        <div class="progress mb-3">
+            <div class="progress-bar" id="progress-bar" style="width: 5%;">1/20</div>
+        </div>
+
+        <!-- Question Section -->
+        <div id="question-container" class="card p-4 mb-3">
+            <p id="question-text">How many students in your class are from Korea?</p>
+        </div>
+
+        <!-- Answer Options -->
+        <div id="answer-options">
+            <button class="btn btn-block btn-outline-primary mb-2 answer-btn" data-answer="1">come</button>
+            <button class="btn btn-block btn-outline-primary mb-2 answer-btn" data-answer="2">comes</button>
+            <button class="btn btn-block btn-outline-primary mb-2 answer-btn" data-answer="3">are coming</button>
+            <button class="btn btn-block btn-outline-primary mb-2 answer-btn" data-answer="4">came</button>
+        </div>
+
+        <!-- Alerts for Correct or Incorrect -->
+        <div id="feedback" class="alert d-none" role="alert"></div>
+
+        <!-- Next / Back Buttons -->
+        <div class="d-flex justify-content-between mt-3">
+            <button class="btn btn-secondary" id="prev-btn">Back</button>
+            <button class="btn btn-primary" id="next-btn">Next</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 20;
+        let correctAnswers = 0;
+        let incorrectAnswers = 0;
+        let timer = 30;
+        let interval;
+
+        function startTimer() {
+            clearInterval(interval);
+            interval = setInterval(function() {
+                timer--;
+                $('#timer').text('Time: ' + timer);
+                if (timer === 0) {
+                    checkAnswer(null);
+                }
+            }, 1000);
+        }
+
+        function checkAnswer(selectedAnswer) {
+            clearInterval(interval);
+            if (selectedAnswer == "1") { // Correct answer (you can change this)
+                correctAnswers++;
+                $('#feedback').removeClass('d-none alert-danger').addClass('alert-success').text('Correct!');
+            } else {
+                incorrectAnswers++;
+                $('#feedback').removeClass('d-none alert-success').addClass('alert-danger').text('Incorrect!');
+            }
+
+            $('#correct-score').text('Correct: ' + correctAnswers);
+            $('#incorrect-score').text('Incorrect: ' + incorrectAnswers);
+        }
+
+        $('#next-btn').click(function() {
+            currentQuestion++;
+            if (currentQuestion <= totalQuestions) {
+                $('#progress-bar').css('width', (currentQuestion / totalQuestions) * 100 + '%');
+                $('#progress-bar').text(currentQuestion + '/' + totalQuestions);
+                $('#feedback').addClass('d-none');
+                timer = 30;
+                startTimer();
+            } else {
+                window.location.href = "score.html"; // Go to final score page
+            }
+        });
+
+        $('#answer-options .answer-btn').click(function() {
+            const selectedAnswer = $(this).data('answer');
+            checkAnswer(selectedAnswer);
+        });
+
+        startTimer();
+    </script>
+</body>
+</html>

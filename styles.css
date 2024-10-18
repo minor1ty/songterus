@@ -1,0 +1,57 @@
+body {
+  background-image: url("images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0; /* Remove default margin */
+  display: flex; /* Enable Flexbox */
+  flex-direction: column; /* Stack child elements vertically */
+  font-family: 'Montserrat', sans-serif; /* Apply Montserrat font */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  position: fixed; /* Fix the header at the top */
+  top: 0; /* Position it at the top */
+  left: 0; /* Position it at the left */
+  background-color: rgba(255, 255, 255, 0.8); /* Optional: Add a background color to improve readability */
+  z-index: 10; /* Ensure it stays above other content */
+}
+
+.header img {
+  max-height: 60px; /* Set max height for the header images */
+}
+
+.content {
+  display: flex; /* Enable Flexbox for centering */
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  flex-grow: 1; /* Allow content to grow and fill available space */
+  margin-top: -200px; /* Adjust margin to push content below the fixed header */
+  text-align: center; /* Center text horizontally */
+}
+
+a {
+  width: 200px; /* Set a fixed width for the buttons */
+  margin: 10px 0; /* Add margin between the buttons */
+}
+
+#play-btn {
+	margin-top: 40px;
+}
+
+.footer {
+  text-align: center; /* Center the text */
+  padding: 10px 0; /* Add some padding */
+  position: relative; /* Position relative for better layout */
+  bottom: 0; /* Stick it to the bottom */
+  width: 100%; /* Full width */
+  font-size: 12px; /* Adjust font size */
+  color: white; /* Change text color */
+}
